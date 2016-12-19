@@ -1,6 +1,6 @@
 # electron-boilerplate-sqlite
 
-Truly tiny boilerplate for an Electron app, including sqlite. Cut down from https://github.com/szwacz/electron-boilerplate
+Truly tiny boilerplate for an Electron app that includes SQLite support
 
 ```
 git clone https://github.com/sjmelia/electron-boilerplate-sqlite.git
@@ -18,3 +18,9 @@ Releases can only be built on the target platform.
 ## Using native modules
 
 If you wish to use native modules, you must run `npm run postinstall` after first install of the module.
+
+## Thanks to
+
+* Primary inspiration: https://github.com/szwacz/electron-boilerplate
+* SQLite JS: https://github.com/bytheway/electron-sqlite3/
+
