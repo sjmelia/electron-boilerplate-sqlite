@@ -23,10 +23,10 @@
     "release": "build"
   },
   "dependencies": {
-    "sqlite3": "^3.1.8"
+    "sqlite3": "^4.0.9"
   },
   "devDependencies": {
-    "electron": "^1.4.10",
-    "electron-builder": "^10.8.1"
+    "electron": "^5.0.6",
+    "electron-builder": "^21.0.15"
   }
 }
