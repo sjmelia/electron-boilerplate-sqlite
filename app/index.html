@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html>
-  <head>
-  </head>
+<head>
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link href='https://fonts.googleapis.com/css?family=Alatsi' rel='stylesheet'>
+	<meta charset="utf-8">
+	<title>Booneville PD Radio Log</title>
+</head>
   <body>
-    <h1>electron-boilerplate-sqlite</h1>
+    <h1>Booneville PD Radio Log</h1>
     <ul id="database">
     </ul>
     <script>
       var sqlite3 = require('sqlite3').verbose();
-      var db = new sqlite3.Database(':memory:');
+      var db = new sqlite3.Database('./database/database.sqlite3');
 
       db.serialize(function() {
         db.run("CREATE TABLE lorem (info TEXT)");
@@ -29,6 +34,8 @@
       });
 
       db.close();
+
+      window.print();
     </script>
   </body>
 </html>
