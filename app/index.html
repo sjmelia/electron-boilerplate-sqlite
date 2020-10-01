@@ -7,10 +7,10 @@
 	<meta charset="utf-8">
 	<title>Booneville PD Radio Log</title>
 </head>
-  <body>
-    <h1>Booneville PD Radio Log</h1>
-    <ul id="database">
-    </ul>
+  <body class="w3-light-gray">
+    <h1 class="w3-center w3-black">Booneville PD Radio Log</h1>
+    <div id="database" class="w3-center">
+    </div>
     <script>
       var sqlite3 = require('sqlite3').verbose();
       var db = new sqlite3.Database('./database/database.sqlite3');
@@ -27,15 +27,13 @@
 
         var rows = document.getElementById("database");
         db.each("SELECT rowid AS id, info FROM lorem", function(err, row) {
-          var item = document.createElement("li");
+          var item = document.createElement("p");
           item.textContent = "" + row.id + ": " + row.info;
           rows.appendChild(item);
         });
       });
 
       db.close();
-
-      window.print();
     </script>
   </body>
 </html>
