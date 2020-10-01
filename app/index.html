@@ -16,19 +16,17 @@
       var db = new sqlite3.Database('./database/database.sqlite3');
 
       db.serialize(function() {
-        db.run("CREATE TABLE lorem (info TEXT)");
 
-        var stmt = db.prepare("INSERT INTO lorem VALUES (?)");
-        for (var i = 0; i < 10; i++) {
-          stmt.run("Ipsum " + i);
-        }
+        var entry = db.prepare("INSERT INTO logs(user) VALUES (?)");
+        
+          entry.run("New User");
 
-        stmt.finalize();
+        entry.finalize();
 
         var rows = document.getElementById("database");
-        db.each("SELECT rowid AS id, info FROM lorem", function(err, row) {
+        db.each("SELECT rowid AS id, user FROM logs", function(err, row) {
           var item = document.createElement("p");
-          item.textContent = "" + row.id + ": " + row.info;
+          item.textContent = "" + row.id + ": " + row.user;
           rows.appendChild(item);
         });
       });
