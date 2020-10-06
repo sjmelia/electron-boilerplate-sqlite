@@ -1,3 +1,12 @@
 h1 {
     font-family: 'Alatsi';
 }
+
+table {
+    border-collapse: collapse;
+
+}
+
+td, tr {
+    border: 1px solid black;
+}

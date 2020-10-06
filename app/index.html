@@ -9,25 +9,45 @@
 </head>
   <body class="w3-light-gray">
     <h1 class="w3-center w3-black">Booneville PD Radio Log</h1>
-    <div id="database" class="w3-center">
+    <div class="w3-center">
+      <table class="w3-table w3-white w3-left-align">
+        <tbody id="database">
+        </tbody>
+      </table>
     </div>
     <script>
-      var sqlite3 = require('sqlite3').verbose();
+      const sqlite3 = require('sqlite3').verbose();
       var db = new sqlite3.Database('./database/database.sqlite3');
 
       db.serialize(function() {
 
-        var entry = db.prepare("INSERT INTO logs(user) VALUES (?)");
+       // var entry = db.prepare("INSERT INTO logs(user) VALUES (?)");
         
-          entry.run("New User");
+      //    entry.run("New User");
 
-        entry.finalize();
+       // entry.finalize();
 
+       //target the tbody element to have data inserted
         var rows = document.getElementById("database");
-        db.each("SELECT rowid AS id, user FROM logs", function(err, row) {
-          var item = document.createElement("p");
-          item.textContent = "" + row.id + ": " + row.user;
-          rows.appendChild(item);
+        //query the database to include all entries that are made by the current user
+        db.each("SELECT rowid AS id, user, date, shift, time, subject, log FROM logs ORDER BY time", function(err, row) {
+          // creates the HTML elements that will recieve the data from the database
+          var entry = document.createElement("tr");
+          var entryTime = document.createElement("td");
+          // each createTextNode is filling the column of each row with data from the database
+          var entryTimeText = document.createTextNode(row.time);
+          var entrySubject = document.createElement("td");
+          var entrySubjectText = document.createTextNode(row.subject);
+          var entryLog = document.createElement("td");
+          var entryLogText = document.createTextNode(row.log);
+          
+          entryTime.appendChild(entryTimeText);
+          entrySubject.appendChild(entrySubjectText);
+          entryLog.appendChild(entryLogText);
+          entry.appendChild(entryTime);
+          entry.appendChild(entrySubject);
+          entry.appendChild(entryLog);
+          rows.appendChild(entry);
         });
       });
 
