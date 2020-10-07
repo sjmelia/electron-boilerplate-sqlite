@@ -123,6 +123,7 @@
                     return "6 PM - 6 AM"
                 }
               }
+        getCurrentLog();
     }
 
     function endSession() {
