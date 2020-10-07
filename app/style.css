@@ -10,3 +10,11 @@ table {
 td, tr {
     border: 1px solid black;
 }
+
+.logButton {
+    margin-top: 5px;
+}
+
+.logTextArea {
+    width: auto;
+}

@@ -4,54 +4,57 @@
 	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" type="text/css" href="style.css">
   <link href='https://fonts.googleapis.com/css?family=Alatsi' rel='stylesheet'>
+  <script defer src="mainscript.js"></script>
 	<meta charset="utf-8">
 	<title>Booneville PD Radio Log</title>
 </head>
   <body class="w3-light-gray">
     <h1 class="w3-center w3-black">Booneville PD Radio Log</h1>
-    <div class="w3-center">
+    
+    <div class="w3-panel" id="newSessionContainer">
+      <form class=w3-container">
+        <h3>New Session</h3>
+        <input class="w3-input" type="text" id="sessionUserName" name="sessionUserName" placeholder="Dispatcher">
+        <input class="w3-input" type="text" id="sessionUser" name="sessionUser" placeholder="Operator Number">
+        <input class="w3-input" type="text" id="sessionDate" name="sessionDate" placeholder="Date">
+        <input class="w3-radio" type="radio" name="sessionShift" value="6a6p" checked>
+        <label>6 AM - 6 PM</label>
+        <br>
+        <input class="w3-radio" type="radio" name="sessionShift" value="6p6a">
+        <label>6 PM - 6 AM</label>
+        <br>
+        <button class="w3-button w3-black logButton" type="button" onclick="newSession()">Start Session</button>
+      </form>
+    </div>
+
+    <div class="w3-panel" id="currentSessionHeader" style="display: none;">
+    <span id="sessionHeaderDate"></span>
+    <span> -- </span>
+    <span id="sessionHeaderShift"></span>
+    <span> -- </span>
+    <span id="sessionHeaderUser"></span>
+    <span> - </span>
+    <span id="sessionHeaderUserName"></span>
+    </div>
+
+    <div class="w3-container w3-center">
       <table class="w3-table w3-white w3-left-align">
         <tbody id="database">
         </tbody>
       </table>
     </div>
-    <script>
-      const sqlite3 = require('sqlite3').verbose();
-      var db = new sqlite3.Database('./database/database.sqlite3');
 
-      db.serialize(function() {
-
-       // var entry = db.prepare("INSERT INTO logs(user) VALUES (?)");
-        
-      //    entry.run("New User");
-
-       // entry.finalize();
-
-       //target the tbody element to have data inserted
-        var rows = document.getElementById("database");
-        //query the database to include all entries that are made by the current user
-        db.each("SELECT rowid AS id, user, date, shift, time, subject, log FROM logs ORDER BY time", function(err, row) {
-          // creates the HTML elements that will recieve the data from the database
-          var entry = document.createElement("tr");
-          var entryTime = document.createElement("td");
-          // each createTextNode is filling the column of each row with data from the database
-          var entryTimeText = document.createTextNode(row.time);
-          var entrySubject = document.createElement("td");
-          var entrySubjectText = document.createTextNode(row.subject);
-          var entryLog = document.createElement("td");
-          var entryLogText = document.createTextNode(row.log);
-          
-          entryTime.appendChild(entryTimeText);
-          entrySubject.appendChild(entrySubjectText);
-          entryLog.appendChild(entryLogText);
-          entry.appendChild(entryTime);
-          entry.appendChild(entrySubject);
-          entry.appendChild(entryLog);
-          rows.appendChild(entry);
-        });
-      });
-
-      db.close();
-    </script>
+    <div class="w3-panel" id="newEntryContainer" style="display: none;">
+      <form class="w3-container">
+        <h3>New Entry:</h3>
+      <input class="w3-input" type="text" id="newEntryTime" name="newEntryTime" placeholder="Time">
+      <br>
+      <input class="w3-input" type="text" id="newEntrySubject" name="newEntrySubject" placeholder="Subject">
+      <br>
+      <textarea class="w3-input" id="newEntryLog" name="newEntryLog" placeholder="Log"></textarea>
+      <br>
+      <button class="w3-button w3-white logButton" type="button" onclick="addEntry()">Add Entry</button>
+    </form>
+    </div>
   </body>
 </html>
