@@ -124,3 +124,33 @@
                 }
               }
     }
+
+    function endSession() {
+
+        // grab each of the containers to either hide or reveal parts of the application
+        var newSessionForm = document.getElementById("newSessionContainer");
+        var newEntryForm = document.getElementById("newEntryContainer");
+        var currentSessionHeader = document.getElementById("currentSessionHeader");
+        var logEntries = document.getElementById("database");
+        var endSessionContainer = document.getElementById("endSessionContainer");
+
+        // grab the elements of the new session form to clear it's text
+        var newSessionUserName = document.getElementById("sessionUserName");
+        var newSessionUser = document.getElementById("sessionUser");
+        var newSessionDate = document.getElementById("sessionDate");
+
+        // clear the previous information from the forms and log entry table
+        newSessionUserName.value = "";
+        newSessionUser.value = "";
+        newSessionDate.value = "";
+        logEntries.innerHTML = "";
+
+        // either hide or reveal each section of the application
+        newSessionForm.style.display = "block";
+        currentSessionHeader.style.display = "none";
+        newEntryForm.style.display = "none";
+        endSessionContainer.style.display = "none";
+
+
+
+    }
