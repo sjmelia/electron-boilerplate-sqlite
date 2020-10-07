@@ -82,7 +82,7 @@
         var userName = document.getElementById("sessionUserName").value;
         var user = document.getElementById("sessionUser").value;
         var date = document.getElementById("sessionDate").value;
-        // var shift = document.getElementsByName("sessionShift");
+        var shift = document.querySelector('input[name="sessionShift"]:checked').value;
 
         // grab the location to display the text pulled from the form
         var sessionUserName = document.getElementById("sessionHeaderUserName");
@@ -94,31 +94,33 @@
         var sessionUserNameText = document.createTextNode(userName);
         var sessionUserText = document.createTextNode(user);
         var sessionDateText = document.createTextNode(date);
-        var sessionShiftText
-
-        // loop through the possible shifts to find the one checked, and add it to a text node
-         //   chooseShift(shift);
+        var sessionShiftText = document.createTextNode(chooseShift(shift));
 
         // insert text nodes into the spans
         sessionUserName.appendChild(sessionUserNameText);
         sessionUser.appendChild(sessionUserText);
         sessionDate.appendChild(sessionDateText);
-       // sessionShift.appendChild(sessionShiftText);
+        sessionShift.appendChild(sessionShiftText);
 
         // hide the new session form and display the new entry form
         var newSessionForm = document.getElementById("newSessionContainer");
         var newEntryForm = document.getElementById("newEntryContainer");
+        var currentSessionHeader = document.getElementById("currentSessionHeader");
+        var endSessionContainer = document.getElementById("endSessionContainer");
 
         newSessionForm.style.display = "none";
         currentSessionHeader.style.display = "block";
         newEntryForm.style.display = "block";
-
+        endSessionContainer.style.display = "block";
       
-
+        // loop through the possible shifts to find the one checked, and add it to a text node
           function chooseShift(shift) {
-              for (i = 0, i < shift.length, i++; ;) {
-                  if (shift[i].checked)
-                      sessionShiftText = document.createTextNode(shift[i]);
+                
+                if (shift = '6a6p') {
+                    return "6 AM - 6 PM"
+                }
+                else if (shift = '6p6a') {
+                    return "6 PM - 6 AM"
+                }
               }
-          }
     }
