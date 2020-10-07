@@ -139,11 +139,21 @@
         var newSessionUser = document.getElementById("sessionUser");
         var newSessionDate = document.getElementById("sessionDate");
 
+        var currentSessionHeaderUserName = document.getElementById("sessionHeaderUserName");
+        var currentSessionHeaderUser = document.getElementById("sessionHeaderUser");
+        var currentSessionHeaderDate = document.getElementById("sessionHeaderDate");
+        var currentSessionHeaderShift = document.getElementById("sessionHeaderShift");
+
         // clear the previous information from the forms and log entry table
         newSessionUserName.value = "";
         newSessionUser.value = "";
         newSessionDate.value = "";
         logEntries.innerHTML = "";
+
+        currentSessionHeaderUserName.innerHTML = "";
+        currentSessionHeaderUser.innerHTML = "";
+        currentSessionHeaderDate.innerHTML = "";
+        currentSessionHeaderShift.innerHTML = "";
 
         // either hide or reveal each section of the application
         newSessionForm.style.display = "block";
